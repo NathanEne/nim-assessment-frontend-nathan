@@ -1,3 +1,6 @@
+import React from "react";
+import styles from "./styles/OrderConfirmation.module.css";
+
 function OrderConfirmation({ order }) {
   const { name, address, id, items } = order;
 
@@ -11,15 +14,23 @@ function OrderConfirmation({ order }) {
   }
 
   return (
-    <div>
+    <div className={styles.container}>
       <h1>Order Confirmation</h1>
-
+      <p>Order Id: {id.toString()}</p>
       <ul>
         <li> Name: {name}</li>
         <li>Address: {address}</li>
-        <li>Items: {itemsNew}</li>
-        <li>Order Id: {id}</li>
-        <li>Sub Total: {totalPrice}</li>
+        <li>
+          Items:
+          <ul className={styles["items-list"]}>
+            <li>
+              {itemsNew.map((elem) => (
+                <p key="$elem">{elem}</p>
+              ))}
+            </li>
+          </ul>
+        </li>
+        <li className={styles["sub-total"]}>Sub Total: ${totalPrice}</li>
       </ul>
     </div>
   );
